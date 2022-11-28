@@ -157,7 +157,7 @@
         </div>
       </div>
     </div>
-    <p><a href="https://github.com/LiubovSheina/weather.git" id="autor" target="_blank">Create by Liubov Sheina</a></p>
+    <p class="code"><a href="https://github.com/LiubovSheina/vanilla-wearther" id="autor" target="_blank">Opened code. </a>Create by Liubov Sheina</p>
     <script src="src/script.js"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script>
@@ -193,6 +193,11 @@
         let li = document.querySelector("#city");
         li.innerHTML = `${nameCity}`;
         console.log(nameCity);
+
+       let imageType = responde.data.weather[0].icon;
+       console.log(imageType);
+       let imageShow = document.querySelector("#picture-wearthe");
+       imageShow.src= `http://openweathermap.org/img/wn/${imageType}@2x.png`;
       };
 
 
