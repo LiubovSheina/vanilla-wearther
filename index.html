@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatibla" content="ie=edge" />
+    <title>Currently weather</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/8c3f2e3f94.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="row">
+        <div class="col-6 status">
+          <ul>
+            <li id="city">Kyiv</li>
+            <li id="type-weather">Cloud </li>
+          </ul>
+          <h1>
+            <img id="picture-wearthe" src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="cloudy" width="50" height="50"/>
+            <span id="cur-temp">12</span><a href="#" class="graduse">°C| </a
+            ><a href="#" class="farengete">°F</a>
+          </h1>
+          <ul class="all-detal">
+            <li>Chance of precipitation: <span id="chance">2</span>%</li>
+            <li>Humidity:<span id="humidity">85</span>%</li>
+            <li>Wind: <span id="wind">7</span>m/h</li>
+          </ul>
+          <form class="btn-form">
+            <label for="citys" class="label-city">Choose next city</label>
+            <input
+              type="text"
+              class="form-control"
+              id="citys"
+              placeholder="City"
+              aria-label="City"
+            />
+            <button type="submit" class="btn btn-primary">Change</button>
+          </form>
+          <button type="button" class="btn btn-success" id="cur-btn">Currently</button>
+        </div>
+
+        <div class="col-6 status">
+          <h2 class="currently-date"></h2>
+          <img
+            src="/images/undraw_weather_app_re_kcb1.svg"
+            alt="Cloud"
+            class="first-image"
+            width="200"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>Characterictics</h3>
+        <div class="col-2">Temperature</div>
+        <div class="col-2">Huidity</div>
+        <div class="col-2">Wind</div>
+      </div>
+      <div class="draw-graph">
+        <div class="row">
+          <div class="col-2">
+            <ul>
+              <li>12<span>°C| </span><span>°F</span></li>
+              <li><i class="fa-solid fa-cloud-moon"></i></li>
+              <li>3:00</li>
+            </ul>
+          </div>
+          <div class="col-2">
+            <ul>
+              <li>18<span>°C| </span><span>°F</span></li>
+              <li><i class="fa-solid fa-cloud-sun"></i></li>
+              <li>9:00</li>
+            </ul>
+          </div>
+          <div class="col-2">
+            <ul>
+              <li>16<span>°C| </span><span>°F</span></li>
+              <li><i class="fa-solid fa-cloud-sun-rain"></i></li>
+              <li>15:00</li>
+            </ul>
+          </div>
+          <div class="col-2">
+            <ul>
+              <li>12<span>°C| </span><span>°F</span></li>
+              <li><i class="fa-solid fa-cloud-rain"></i></li>
+              <li>19:00</li>
+            </ul>
+          </div>
+          <div class="col-2">
+            <ul>
+              <li>10<span>°C| </span><span>°F</span></li>
+              <li><i class="fa-solid fa-cloud-moon-rain"></i></li>
+              <li>23:00</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row draw-dayly-temperature">
+        <h3>Change by days</h3>
+        <div class="col-2">
+          <ul>
+            <li>Monday</li>
+            <li><i class="fa-solid fa-cloud-moon-rain"></i></li>
+            <li>18<span>°C| </span><span>°F</span></li>
+          </ul>
+        </div>
+        <div class="col-2">
+          <ul>
+            <li>Tuesday</li>
+            <li><i class="fa-solid fa-cloud-sun-rain"></i></li>
+            <li>15<span>°C| </span><span>°F</span></li>
+          </ul>
+        </div>
+        <div class="col-2">
+          <ul>
+            <li>Wednesday</li>
+            <li><i class="fa-solid fa-cloud-sun-rain"></i></li>
+            <li>17<span>°C| </span><span>°F</span></li>
+          </ul>
+        </div>
+        <div class="col-2">
+          <ul>
+            <li>Thurthday</li>
+            <li><i class="fa-solid fa-cloud-sun-rain"></i></li>
+            <li>13<span>°C| </span><span>°F</span></li>
+          </ul>
+        </div>
+        <div class="col-2">
+          <ul>
+            <li>Friday</li>
+            <li><i class="fa-solid fa-cloud-rain"></i></li>
+            <li>14<span>°C| </span><span>°F</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p><a href="https://github.com/LiubovSheina/weather.git" id="autor" target="_blank">Create by Liubov Sheina</a></p>
+    <script src="src/script.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+            let apiKey = "1b6496837420c9603d7b34a746743618";
+            function showWearther(responde) {
+              console.log(responde);
+               let humidity = Math.round(responde.data.main.humidity);
+               console.log(humidity);
+               let lihumidity = document.querySelector("#humidity");
+                lihumidity.innerHTML=`${humidity}`;
+
+                let wind = Math.round(responde.data.wind.speed);
+                console.log(wind);
+                let liwind = document.querySelector("#wind");
+                liwind.innerHTML = `${wind}`;
+
+                let chance = Math.round(responde.data.clouds.all);
+                console.log(chance);
+                let lichance = document.querySelector("#chance");
+                lichance.innerHTML = `${chance}`;
+
+                let tempreture = Math.round(responde.data.main.temp);
+                console.log(tempreture);
+                let temp = document.querySelector("#cur-temp");
+                temp.innerHTML = `${tempreture}`;
+
+        let weather = responde.data.weather[0].main;
+        console.log(weather)
+        let typeWeather = document.querySelector("#type-weather");
+        typeWeather.innerHTML = `${weather}`;
+
+        let nameCity = responde.data.name;
+        let li = document.querySelector("#city");
+        li.innerHTML = `${nameCity}`;
+        console.log(nameCity);
+      };
+
+
+      let form = document.querySelector(".btn-form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let cities = document.querySelector("#citys");
+        let city = cities.value;
+        console.log(city);
+
+              let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
+
+              axios.get(`${url}&appid=${apiKey}`).then(showWearther);
+            });
+
+        function showTemp(){
+           function handlePosition(position) {
+              let lat = position.coords.latitude;
+              console.log(lat);
+              let lon = position.coords.longitude;
+              console.log(lon);
+               let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
+
+              axios.get(`${url}&appid=${apiKey}`).then(showWearther)};
+              navigator.geolocation.getCurrentPosition(handlePosition);
+
+              };
+
+        let btn = document.querySelector("#cur-btn");
+        btn.addEventListener("click",showTemp);
+    </script>
+  </body>
+</html>
