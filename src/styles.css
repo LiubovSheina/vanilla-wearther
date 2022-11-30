@@ -64,9 +64,6 @@ h2,
 .farengete {
   text-decoration: none;
   font-size: 24px;
-  
-
-  
 }
 .graduse:hover,
 .farengete:hover {
@@ -114,4 +111,9 @@ button:hover {
 .code {
   margin: 20px auto;
   text-align: center;
+}
+
+.wearthe-link .active {
+  text-decoration: none;
+  color: rgb(33,33,33);
 }

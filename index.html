@@ -38,9 +38,9 @@
             <li id="city">Kyiv</li>
             <li id="type-weather">Cloud </li>
           </ul>
-          <h1>
+          <h1 class="wearthe-link">
             <img id="picture-wearthe" src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="cloudy" width="50" height="50"/>
-            <span id="cur-temp">12</span><a href="#" class="graduse">°C| </a
+            <span id="cur-temp">12</span><a href="#" class="graduse active">°C| </a
             ><a href="#" class="farengete">°F</a>
           </h1>
           <ul class="all-detal">
@@ -161,6 +161,7 @@
     <script src="src/script.js"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script>
+      let currentTemp = null;
             let apiKey = "1b6496837420c9603d7b34a746743618";
             function showWearther(responde) {
               console.log(responde);
@@ -181,6 +182,7 @@
 
                 let tempreture = Math.round(responde.data.main.temp);
                 console.log(tempreture);
+                currentTemp = tempreture;
                 let temp = document.querySelector("#cur-temp");
                 temp.innerHTML = `${tempreture}`;
 
@@ -228,6 +230,30 @@
 
         let btn = document.querySelector("#cur-btn");
         btn.addEventListener("click",showTemp);
+
+        function showGraduse (event) {
+         event. preventDefault();
+         let temp = document.querySelector("#cur-temp");
+        temp.innerHTML = currentTemp;
+        farengeteShow.classList.remove("active");
+        graduseShow.classList.add("active");
+        }
+
+        function showFarengete (event){
+         event. preventDefault();
+         let temp = document.querySelector("#cur-temp");
+        temp.innerHTML = Math.round((currentTemp*9)/5 +32);
+       graduseShow.classList.remove("active");
+       farengeteShow.classList.add("active");
+        };
+
+
+        let graduseShow = document.querySelector(".graduse");
+        graduseShow.addEventListener("click",showGraduse);
+
+        
+        let farengeteShow = document.querySelector(".farengete");
+        farengeteShow.addEventListener("click",showFarengete);
     </script>
   </body>
 </html>
