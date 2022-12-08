@@ -117,3 +117,6 @@ button:hover {
   text-decoration: none;
   color: rgb(33,33,33);
 }
+.min {
+  color: grey;
+}

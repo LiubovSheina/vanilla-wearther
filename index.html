@@ -58,9 +58,10 @@
               aria-label="City"
             />
             <button type="submit" class="btn btn-primary">Change</button>
+            <button type="button" class="btn btn-success" id="cur-btn">Currently</button>
+       
           </form>
-          <button type="button" class="btn btn-success" id="cur-btn">Currently</button>
-        </div>
+         </div>
 
         <div class="col-6 status">
           <h2 class="currently-date"></h2>
@@ -72,12 +73,12 @@
           />
         </div>
       </div>
-
+      <h3>Characterictics</h3>
       <div class="row">
-        <h3>Characterictics</h3>
-        <div class="col-2">Temperature</div>
-        <div class="col-2">Huidity</div>
-        <div class="col-2">Wind</div>
+       
+        <div class="col-2"><button type="button" class="btn btn-primary active">Temperature</button> </div>
+        <div class="col-2"><button type="button" class="btn btn-primary">Huidity</button></div>
+        <div class="col-2"><button type="button" class="btn btn-primary">Wind</button></div>
       </div>
       <div class="draw-graph">
         <div class="row">
@@ -118,43 +119,9 @@
           </div>
         </div>
       </div>
-      <div class="row draw-dayly-temperature">
-        <h3>Change by days</h3>
-        <div class="col-2">
-          <ul>
-            <li>Monday</li>
-            <li><i class="fa-solid fa-cloud-moon-rain"></i></li>
-            <li>18<span>°C| </span><span>°F</span></li>
-          </ul>
-        </div>
-        <div class="col-2">
-          <ul>
-            <li>Tuesday</li>
-            <li><i class="fa-solid fa-cloud-sun-rain"></i></li>
-            <li>15<span>°C| </span><span>°F</span></li>
-          </ul>
-        </div>
-        <div class="col-2">
-          <ul>
-            <li>Wednesday</li>
-            <li><i class="fa-solid fa-cloud-sun-rain"></i></li>
-            <li>17<span>°C| </span><span>°F</span></li>
-          </ul>
-        </div>
-        <div class="col-2">
-          <ul>
-            <li>Thurthday</li>
-            <li><i class="fa-solid fa-cloud-sun-rain"></i></li>
-            <li>13<span>°C| </span><span>°F</span></li>
-          </ul>
-        </div>
-        <div class="col-2">
-          <ul>
-            <li>Friday</li>
-            <li><i class="fa-solid fa-cloud-rain"></i></li>
-            <li>14<span>°C| </span><span>°F</span></li>
-          </ul>
-        </div>
+      
+      <h3>Change by days</h3>
+      <div class="draw-dayly-temperature">
       </div>
     </div>
     <p class="code"><a href="https://github.com/LiubovSheina/vanilla-wearther" id="autor" target="_blank">Opened code. </a>Create by Liubov Sheina</p>
@@ -162,8 +129,60 @@
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <script>
       let currentTemp = null;
+      
             let apiKey = "1b6496837420c9603d7b34a746743618";
+
+
+            function formatDay (times){
+              let arrayDay = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+              let dataDate= new Date(times*1000);
+console.log(dataDate);
+let week = dataDate.getDay();
+console.log(arrayDay[week]);
+return arrayDay[week];
+            };
+
+            function forecastBuild (responde){
+      console.log(responde);        
+let forecast = document.querySelector(".draw-dayly-temperature");
+let forecastHTML = `<div class="row">`;
+
+let massiv = responde.data.daily;
+console.log(massiv);
+massiv.forEach(function (day,index){ 
+if (index < 5){
+let imageTyp = day.weather[0].icon;
+console.log(imageTyp);
+
+let max = Math.round(day.temp.max);
+console.log(max);
+let min = Math.round(day.temp.min);
+console.log(min);
+forecastHTML = forecastHTML +`<div class="col-2">
+<div class="wearte-days">${formatDay(day.dt)}</div>
+<img  src="http://openweathermap.org/img/wn/${imageTyp}@2x.png" alt="wearthe" width="45"/>
+<div class="max-min">${max}° <span class="min">${min}°</span></div>
+`;
+}
+console.log(forecastHTML);
+forecastHTML=forecastHTML+`</div>`;
+forecast.innerHTML = forecastHTML;
+});  
+            };
+          
+            function forecastShow(coordinats){
+              let apiKey = "cd173a006b0e51dac58c6d8064c94178";
+              let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinats.lat}&lon=${coordinats.lon}&appid=${apiKey}&units=metric`;
+              console.log(url);
+
+axios.get(`${url}`).then(forecastBuild);
+
+};
+
             function showWearther(responde) {
+            
+             
+        
               console.log(responde);
                let humidity = Math.round(responde.data.main.humidity);
                console.log(humidity);
@@ -200,6 +219,7 @@
        console.log(imageType);
        let imageShow = document.querySelector("#picture-wearthe");
        imageShow.src= `http://openweathermap.org/img/wn/${imageType}@2x.png`;
+       forecastShow(responde.data.coord);
       };
 
 
@@ -215,18 +235,32 @@
               axios.get(`${url}&appid=${apiKey}`).then(showWearther);
             });
 
+            let positionLat = null;
+            let positionLon = null;
+
+
         function showTemp(){
            function handlePosition(position) {
               let lat = position.coords.latitude;
               console.log(lat);
+              positionLat = lat;
+
               let lon = position.coords.longitude;
               console.log(lon);
+              positionLon = lon;
                let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
 
               axios.get(`${url}&appid=${apiKey}`).then(showWearther)};
               navigator.geolocation.getCurrentPosition(handlePosition);
 
               };
+
+          showTemp(); 
+          
+          
+
+
+
 
         let btn = document.querySelector("#cur-btn");
         btn.addEventListener("click",showTemp);
@@ -254,6 +288,8 @@
         
         let farengeteShow = document.querySelector(".farengete");
         farengeteShow.addEventListener("click",showFarengete);
+
+
     </script>
   </body>
 </html>
